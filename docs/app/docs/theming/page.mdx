@@ -1,0 +1,143 @@
+# Theming
+
+Customize the appearance of macOS UI components using CSS variables and the Tailwind preset.
+
+## Theme System
+
+macOS UI uses CSS variables for theming, making it easy to customize colors, spacing, and other design tokens. All components automatically respond to theme changes.
+
+## CSS Variables
+
+Define your theme by setting CSS variables in your global CSS file:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.9%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --border: 0 0% 89.8%;
+  --window-background: 0 0% 98%;
+  --window-border: 0 0% 85%;
+  --dock-background: 0 0% 95%;
+  --menu-bar-background: 0 0% 97%;
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --window-background: 0 0% 8%;
+  --window-border: 0 0% 20%;
+  --dock-background: 0 0% 10%;
+  --menu-bar-background: 0 0% 12%;
+}
+```
+
+## Color Format
+
+Colors use the HSL format without the `hsl()` wrapper. This allows Tailwind to apply opacity modifiers:
+
+```
+hue saturation% lightness%
+```
+
+For example: `0 0% 100%` represents white (hsl(0, 0%, 100%))
+
+## Tailwind Preset
+
+The macOS UI Tailwind preset includes:
+
+- Color palette mapped to CSS variables
+- Custom spacing and border radius tokens
+- Animation keyframes for window and dock effects
+- Backdrop blur utilities
+
+```js
+import macosPreset from '@sylonik/macos-ui/tailwind.preset'
+
+export default {
+  presets: [macosPreset],
+  // your config
+}
+```
+
+## Component Variants
+
+Many components support variant props for different visual styles:
+
+```tsx
+<Window variant="default" />
+<Window variant="utility" />
+<Window variant="modal" />
+```
+
+Variants are defined using `class-variance-authority` and can be customized by modifying the component source.
+
+## Dark Mode
+
+macOS UI supports dark mode out of the box. Add the `dark` class to your root element to enable dark mode:
+
+```tsx
+<html className="dark">
+  {/* your app */}
+</html>
+```
+
+Or use a theme provider to toggle between light and dark modes dynamically.
+
+## Customization
+
+Since components are copied into your project, you have full control over styling:
+
+1. Modify the component's className props
+2. Edit the component source directly
+3. Override CSS variables for specific components
+4. Add new variants to the component
+
+## Theme Configuration Object
+
+For programmatic theme management, use the `ThemeConfig` type:
+
+```tsx
+import type { ThemeConfig } from '@sylonik/macos-ui'
+
+const theme: ThemeConfig = {
+  colors: {
+    background: '0 0% 100%',
+    foreground: '0 0% 3.9%',
+    // ... other colors
+  },
+  radius: {
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '0.75rem',
+    window: '0.75rem',
+    dock: '1rem',
+  },
+  blur: {
+    window: '20px',
+    dock: '40px',
+    menuBar: '20px',
+  },
+  shadows: {
+    window: '0 10px 40px rgba(0, 0, 0, 0.1)',
+    windowActive: '0 20px 60px rgba(0, 0, 0, 0.2)',
+    dock: '0 5px 20px rgba(0, 0, 0, 0.15)',
+  },
+}
+```

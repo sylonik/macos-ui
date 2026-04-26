@@ -1,0 +1,71 @@
+/**
+ * macOS UI Theme Variables
+ * 
+ * These CSS variables define the visual theme for all macOS UI components.
+ * Override these variables to customize the appearance of your application.
+ */
+
+:root {
+  /* Colors */
+  --macos-background: hsl(0 0% 100%);
+  --macos-foreground: hsl(222.2 84% 4.9%);
+  --macos-primary: hsl(221.2 83.2% 53.3%);
+  --macos-secondary: hsl(210 40% 96.1%);
+  --macos-accent: hsl(210 40% 96.1%);
+  --macos-muted: hsl(210 40% 96.1%);
+  --macos-border: hsl(214.3 31.8% 91.4%);
+  
+  /* Component-specific colors */
+  --macos-windowBackground: hsla(0 0% 100% / 0.8);
+  --macos-windowBorder: hsl(214.3 31.8% 91.4%);
+  --macos-dockBackground: hsla(0 0% 100% / 0.7);
+  --macos-menuBarBackground: hsla(0 0% 100% / 0.8);
+  
+  /* Border radius */
+  --macos-radius-sm: 0.25rem;
+  --macos-radius-md: 0.5rem;
+  --macos-radius-lg: 0.75rem;
+  --macos-radius-window: 0.75rem;
+  --macos-radius-dock: 1rem;
+  
+  /* Blur effects */
+  --macos-blur-window: 20px;
+  --macos-blur-dock: 40px;
+  --macos-blur-menuBar: 20px;
+  
+  /* Shadows */
+  --macos-shadow-window: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --macos-shadow-windowActive: 0 20px 60px rgba(0, 0, 0, 0.2);
+  --macos-shadow-dock: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --macos-background: hsl(222.2 84% 4.9%);
+    --macos-foreground: hsl(210 40% 98%);
+    --macos-primary: hsl(217.2 91.2% 59.8%);
+    --macos-secondary: hsl(217.2 32.6% 17.5%);
+    --macos-accent: hsl(217.2 32.6% 17.5%);
+    --macos-muted: hsl(217.2 32.6% 17.5%);
+    --macos-border: hsl(217.2 32.6% 17.5%);
+    
+    --macos-windowBackground: hsla(222.2 84% 4.9% / 0.8);
+    --macos-windowBorder: hsl(217.2 32.6% 17.5%);
+    --macos-dockBackground: hsla(222.2 84% 4.9% / 0.7);
+    --macos-menuBarBackground: hsla(222.2 84% 4.9% / 0.8);
+    
+    --macos-shadow-window: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --macos-shadow-windowActive: 0 20px 60px rgba(0, 0, 0, 0.7);
+    --macos-shadow-dock: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Base styles for macOS UI */
+.macos-ui {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

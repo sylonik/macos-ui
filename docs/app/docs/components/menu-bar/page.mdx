@@ -1,0 +1,205 @@
+import { InstallCommand } from '@/components/install-command'
+import { PropsTable } from '@/components/props-table'
+import {
+  BasicMenuBarExample,
+  MenuWithSubmenusExample,
+  MenuWithStatusAreaExample,
+  DisabledMenuItemsExample,
+} from '@/components/menu-bar-examples'
+
+# Menu Bar
+
+A macOS-style menu bar with dropdown menus and system status area.
+
+## Installation
+
+<InstallCommand command="npx @sylonik/macos-ui add menu-bar" />
+
+## Usage
+
+```tsx
+import { MenuBar } from '@/components/menu-bar'
+
+function App() {
+  const menus = [
+    {
+      label: 'File',
+      items: [
+        { label: 'New', shortcut: '⌘N', onClick: () => console.log('New') },
+        { label: 'Open', shortcut: '⌘O', onClick: () => console.log('Open') },
+        { divider: true },
+        { label: 'Save', shortcut: '⌘S', onClick: () => console.log('Save') },
+        { label: 'Close', shortcut: '⌘W', onClick: () => console.log('Close') },
+      ],
+    },
+    {
+      label: 'Edit',
+      items: [
+        { label: 'Undo', shortcut: '⌘Z', onClick: () => console.log('Undo') },
+        { label: 'Redo', shortcut: '⇧⌘Z', onClick: () => console.log('Redo') },
+        { divider: true },
+        { label: 'Cut', shortcut: '⌘X', onClick: () => console.log('Cut') },
+        { label: 'Copy', shortcut: '⌘C', onClick: () => console.log('Copy') },
+        { label: 'Paste', shortcut: '⌘V', onClick: () => console.log('Paste') },
+      ],
+    },
+  ]
+
+  return (
+    <MenuBar
+      logo={<span className="font-bold"></span>}
+      menus={menus}
+      rightContent={<div>{new Date().toLocaleTimeString()}</div>}
+    />
+  )
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'logo',
+      type: 'React.ReactNode',
+      required: false,
+      description: 'Logo or app name to display on the left',
+    },
+    {
+      name: 'menus',
+      type: 'MenuConfig[]',
+      required: false,
+      description: 'Array of menu configurations',
+    },
+    {
+      name: 'rightContent',
+      type: 'React.ReactNode',
+      required: false,
+      description: 'Content for the right side (status area)',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      required: false,
+      description: 'Additional CSS classes',
+    },
+  ]}
+/>
+
+## Menu Config
+
+```tsx
+interface MenuConfig {
+  label: string
+  items: MenuItemConfig[]
+}
+
+interface MenuItemConfig {
+  label: string
+  shortcut?: string
+  onClick?: () => void
+  disabled?: boolean
+  divider?: boolean
+  submenu?: MenuItemConfig[]
+}
+```
+
+<PropsTable
+  props={[
+    {
+      name: 'label',
+      type: 'string',
+      required: true,
+      description: 'Menu item label text',
+    },
+    {
+      name: 'shortcut',
+      type: 'string',
+      required: false,
+      description: 'Keyboard shortcut display (e.g., "⌘S")',
+    },
+    {
+      name: 'onClick',
+      type: '() => void',
+      required: false,
+      description: 'Callback when item is clicked',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+      description: 'Disable the menu item',
+    },
+    {
+      name: 'divider',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+      description: 'Render as a divider line',
+    },
+    {
+      name: 'submenu',
+      type: 'MenuItemConfig[]',
+      required: false,
+      description: 'Nested submenu items',
+    },
+  ]}
+/>
+
+## Features
+
+- **Dropdown Menus**: Click to open, hover to switch
+- **Keyboard Shortcuts**: Display shortcuts alongside menu items
+- **Submenus**: Support for nested menu structures
+- **Dividers**: Visual separators between menu groups
+- **Disabled Items**: Gray out unavailable options
+- **Outside Click**: Automatically closes on outside click
+- **Keyboard Navigation**: Arrow keys and Enter/Escape support
+- **Status Area**: Right-side content slot for system info
+
+## Examples
+
+<BasicMenuBarExample />
+
+<MenuWithSubmenusExample />
+
+<MenuWithStatusAreaExample />
+
+<DisabledMenuItemsExample />
+
+## Keyboard Navigation
+
+- **Click**: Open dropdown menu
+- **Hover**: Switch between open menus
+- **Arrow Keys**: Navigate menu items
+- **Enter**: Activate selected item
+- **Escape**: Close dropdown
+- **Tab**: Move focus out of menu
+
+## Accessibility
+
+The MenuBar component includes:
+
+- `role="menubar"` and `role="menu"` attributes
+- `aria-haspopup` and `aria-expanded` states
+- Keyboard navigation support
+- Focus management
+- Screen reader announcements
+
+## Styling
+
+Customize the menu bar using CSS variables:
+
+```css
+:root {
+  --menu-bar-background: 0 0% 97%;
+  --menu-bar-blur: 20px;
+  --menu-bar-height: 2rem;
+}
+```
+
+## Related Components
+
+- [Window](/docs/components/window) - Often used together with menu bar
+- [Dock](/docs/components/dock) - Alternative navigation pattern

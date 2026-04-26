@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Component Registry Schema",
+  "description": "Schema for the macOS UI component registry",
+  "type": "object",
+  "required": ["name", "version", "components"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Package name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Package version"
+    },
+    "components": {
+      "type": "object",
+      "description": "Map of component definitions",
+      "additionalProperties": {
+        "$ref": "#/definitions/ComponentDefinition"
+      }
+    }
+  },
+  "definitions": {
+    "ComponentDefinition": {
+      "type": "object",
+      "required": ["name", "description", "category", "files", "dependencies", "devDependencies", "registryDependencies"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Component name (kebab-case)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the component"
+        },
+        "category": {
+          "type": "string",
+          "enum": ["desktop", "window", "ui", "hooks", "lib"],
+          "description": "Component category"
+        },
+        "files": {
+          "type": "array",
+          "description": "List of files that make up this component",
+          "items": {
+            "$ref": "#/definitions/FileDefinition"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "Other components from this registry that this component depends on",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devDependencies": {
+          "type": "array",
+          "description": "NPM packages required by this component",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registryDependencies": {
+          "type": "array",
+          "description": "Registry components that this component depends on",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FileDefinition": {
+      "type": "object",
+      "required": ["name", "path", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "File name"
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path from src/ directory"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["component", "hook", "util", "style", "type"],
+          "description": "Type of file"
+        }
+      }
+    }
+  }
+}

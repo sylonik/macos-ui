@@ -1,0 +1,135 @@
+import { InstallCommand } from '@/components/install-command';
+import { PropsTable } from '@/components/props-table';
+import {
+  BasicDesktopIconExample,
+  DesktopIconWithSelectionExample,
+  ColoredDesktopIconsExample,
+  MultiSelectDesktopIconsExample,
+} from '@/components/desktop-icon-examples';
+
+# Desktop Icon
+
+A clickable desktop icon component with selection states and double-click support.
+
+## Installation
+
+<InstallCommand command="npx @sylonik/macos-ui add desktop-icon" />
+
+## Usage
+
+```tsx
+import { DesktopIcon } from '@/components/desktop-icon'
+import { Folder } from 'lucide-react'
+
+function Desktop() {
+  const [selected, setSelected] = useState<string | null>(null)
+
+  return (
+    <div className="grid grid-cols-6 gap-4 p-8">
+      <DesktopIcon
+        icon={Folder}
+        label="Documents"
+        selected={selected === 'documents'}
+        onClick={() => setSelected('documents')}
+        onDoubleClick={() => console.log('Open documents')}
+      />
+    </div>
+  )
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'icon',
+      type: 'React.ComponentType<{ size?: number }>',
+      required: true,
+      description: 'Icon component to display',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      required: true,
+      description: 'Label text below the icon',
+    },
+    {
+      name: 'color',
+      type: 'string',
+      required: false,
+      description: 'Custom color for the icon',
+    },
+    {
+      name: 'onClick',
+      type: '(event: React.MouseEvent) => void',
+      required: false,
+      description: 'Callback when icon is clicked',
+    },
+    {
+      name: 'onDoubleClick',
+      type: '(event: React.MouseEvent) => void',
+      required: false,
+      description: 'Callback when icon is double-clicked',
+    },
+    {
+      name: 'selected',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+      description: 'Whether the icon is selected',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      required: false,
+      description: 'Additional CSS classes',
+    },
+  ]}
+/>
+
+## Features
+
+- **Single Click**: Select the icon
+- **Double Click**: Open/launch action
+- **Selection State**: Visual feedback for selected icons
+- **Custom Colors**: Colorize icons individually
+- **Keyboard Accessible**: Focus and activation support
+- **Flexible Layout**: Works in grid or flex layouts
+
+## Examples
+
+<BasicDesktopIconExample />
+
+<DesktopIconWithSelectionExample />
+
+<ColoredDesktopIconsExample />
+
+<MultiSelectDesktopIconsExample />
+
+## Accessibility
+
+The DesktopIcon component includes:
+
+- `role="button"` for proper semantics
+- `aria-label` with the icon label
+- `aria-pressed` for selection state
+- Keyboard activation with Enter and Space
+- Focus indicators
+
+## Styling
+
+The icon uses standard Tailwind classes and can be customized:
+
+```tsx
+<DesktopIcon
+  icon={Folder}
+  label="Custom"
+  className="hover:scale-110 transition-transform"
+/>
+```
+
+## Related Components
+
+- [Window Manager](/docs/components/window-manager) - Open windows from icons
+- [Dock](/docs/components/dock) - Alternative launcher style

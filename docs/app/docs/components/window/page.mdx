@@ -1,0 +1,166 @@
+import { InstallCommand } from '@/components/install-command';
+import { PropsTable } from '@/components/props-table';
+import {
+  BasicWindowExample,
+  WindowWithIconExample,
+  MultipleWindowsExample,
+  NonResizableWindowExample,
+} from '@/components/window-examples';
+
+# Window
+
+A draggable, resizable window component that replicates macOS window behavior.
+
+## Installation
+
+<InstallCommand command="npx @sylonik/macos-ui add window" />
+
+## Usage
+
+```tsx
+import { Window, WindowManager } from '@/components/window'
+
+function App() {
+  return (
+    <WindowManager>
+      <Window
+        id="my-window"
+        title="My Application"
+        defaultPosition={{ x: 100, y: 100 }}
+        defaultSize={{ width: 600, height: 400 }}
+      >
+        <div className="p-4">
+          Window content goes here
+        </div>
+      </Window>
+    </WindowManager>
+  )
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'id',
+      type: 'string',
+      required: true,
+      description: 'Unique identifier for the window',
+    },
+    {
+      name: 'title',
+      type: 'string',
+      required: true,
+      description: 'Window title displayed in the title bar',
+    },
+    {
+      name: 'icon',
+      type: 'React.ComponentType<{ size?: number }>',
+      required: false,
+      description: 'Icon component to display in the title bar',
+    },
+    {
+      name: 'children',
+      type: 'React.ReactNode',
+      required: true,
+      description: 'Content to display inside the window',
+    },
+    {
+      name: 'defaultPosition',
+      type: '{ x: number; y: number }',
+      required: false,
+      description: 'Initial position of the window',
+    },
+    {
+      name: 'defaultSize',
+      type: '{ width: number; height: number }',
+      required: false,
+      description: 'Initial size of the window',
+    },
+    {
+      name: 'minSize',
+      type: '{ width: number; height: number }',
+      required: false,
+      description: 'Minimum size constraints',
+    },
+    {
+      name: 'maxSize',
+      type: '{ width: number; height: number }',
+      required: false,
+      description: 'Maximum size constraints',
+    },
+    {
+      name: 'isResizable',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+      description: 'Whether the window can be resized',
+    },
+    {
+      name: 'isDraggable',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+      description: 'Whether the window can be dragged',
+    },
+    {
+      name: 'onClose',
+      type: '() => void',
+      required: false,
+      description: 'Callback when close button is clicked',
+    },
+    {
+      name: 'onMinimize',
+      type: '() => void',
+      required: false,
+      description: 'Callback when minimize button is clicked',
+    },
+    {
+      name: 'onMaximize',
+      type: '() => void',
+      required: false,
+      description: 'Callback when maximize button is clicked',
+    },
+    {
+      name: 'onFocus',
+      type: '() => void',
+      required: false,
+      description: 'Callback when window receives focus',
+    },
+  ]}
+/>
+
+## Features
+
+- **Draggable**: Click and drag the title bar to move the window
+- **Resizable**: Drag window edges to resize (when enabled)
+- **Traffic Lights**: macOS-style close, minimize, and maximize buttons
+- **Focus Management**: Automatic z-index ordering based on focus
+- **Keyboard Accessible**: Full keyboard navigation support
+- **ARIA Attributes**: Proper dialog semantics for screen readers
+
+## Examples
+
+<BasicWindowExample />
+
+<WindowWithIconExample />
+
+<MultipleWindowsExample />
+
+<NonResizableWindowExample />
+
+## Accessibility
+
+The Window component includes:
+
+- `role="dialog"` for proper dialog semantics
+- `aria-modal="true"` when focused
+- `aria-labelledby` pointing to the window title
+- Focus trap for modal windows
+- Keyboard shortcuts for window management
+
+## Related Components
+
+- [Window Manager](/docs/components/window-manager) - Manages multiple windows
+- [Dock](/docs/components/dock) - Application launcher with window indicators

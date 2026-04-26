@@ -1,0 +1,226 @@
+import { InstallCommand } from '@/components/install-command'
+import { PropsTable } from '@/components/props-table'
+
+# Window Manager
+
+A context provider that manages multiple windows, their state, and interactions.
+
+## Installation
+
+The WindowManager is included with the Window component:
+
+<InstallCommand command="npx @sylonik/macos-ui add window" />
+
+## Usage
+
+```tsx
+import { WindowManager, useWindowManager } from '@/components/window'
+
+function App() {
+  return (
+    <WindowManager>
+      <YourApp />
+    </WindowManager>
+  )
+}
+
+function YourApp() {
+  const { openWindow, closeWindow, windows } = useWindowManager()
+
+  const handleOpenWindow = () => {
+    openWindow({
+      id: 'new-window',
+      title: 'New Window',
+      content: <div>Window content</div>,
+      position: { x: 100, y: 100 },
+      size: { width: 600, height: 400 },
+    })
+  }
+
+  return (
+    <div>
+      <button onClick={handleOpenWindow}>Open Window</button>
+      <p>Active windows: {windows.length}</p>
+    </div>
+  )
+}
+```
+
+## Hook API
+
+The `useWindowManager` hook provides access to window management functions:
+
+### Methods
+
+<PropsTable
+  props={[
+    {
+      name: 'windows',
+      type: 'WindowState[]',
+      required: false,
+      description: 'Array of all window states',
+    },
+    {
+      name: 'activeWindowId',
+      type: 'string | null',
+      required: false,
+      description: 'ID of the currently focused window',
+    },
+    {
+      name: 'openWindow',
+      type: '(config: WindowConfig) => string',
+      required: false,
+      description: 'Opens a new window and returns its ID',
+    },
+    {
+      name: 'closeWindow',
+      type: '(id: string) => void',
+      required: false,
+      description: 'Closes a window by ID',
+    },
+    {
+      name: 'focusWindow',
+      type: '(id: string) => void',
+      required: false,
+      description: 'Brings a window to the front',
+    },
+    {
+      name: 'minimizeWindow',
+      type: '(id: string) => void',
+      required: false,
+      description: 'Minimizes a window',
+    },
+    {
+      name: 'maximizeWindow',
+      type: '(id: string) => void',
+      required: false,
+      description: 'Maximizes a window to fill the viewport',
+    },
+    {
+      name: 'restoreWindow',
+      type: '(id: string) => void',
+      required: false,
+      description: 'Restores a minimized or maximized window',
+    },
+    {
+      name: 'updateWindowPosition',
+      type: '(id: string, position: Position) => void',
+      required: false,
+      description: 'Updates window position',
+    },
+    {
+      name: 'updateWindowSize',
+      type: '(id: string, size: Size) => void',
+      required: false,
+      description: 'Updates window size',
+    },
+  ]}
+/>
+
+## Window State
+
+Each window in the manager has the following state:
+
+```tsx
+interface WindowState {
+  id: string
+  appId: string
+  title: string
+  icon: React.ComponentType<{ size?: number }>
+  position: { x: number; y: number }
+  size: { width: number; height: number }
+  zIndex: number
+  isMinimized: boolean
+  isMaximized: boolean
+  isFocused: boolean
+  data?: Record<string, unknown>
+}
+```
+
+## Features
+
+- **Z-Index Management**: Automatically manages window stacking order
+- **Focus Tracking**: Keeps track of the active window
+- **State Persistence**: Window states are maintained across renders
+- **Event Handling**: Centralized window event management
+- **Type Safe**: Full TypeScript support
+
+## Examples
+
+### Opening Multiple Windows
+
+```tsx
+function MultiWindowApp() {
+  const { openWindow } = useWindowManager()
+
+  const openDocumentWindow = () => {
+    openWindow({
+      id: `doc-${Date.now()}`,
+      title: 'Document',
+      content: <DocumentEditor />,
+      position: { x: 100, y: 100 },
+      size: { width: 800, height: 600 },
+    })
+  }
+
+  const openSettingsWindow = () => {
+    openWindow({
+      id: 'settings',
+      title: 'Settings',
+      content: <Settings />,
+      position: { x: 200, y: 200 },
+      size: { width: 500, height: 400 },
+    })
+  }
+
+  return (
+    <div>
+      <button onClick={openDocumentWindow}>New Document</button>
+      <button onClick={openSettingsWindow}>Settings</button>
+    </div>
+  )
+}
+```
+
+### Closing All Windows
+
+```tsx
+function CloseAllButton() {
+  const { windows, closeWindow } = useWindowManager()
+
+  const closeAll = () => {
+    windows.forEach((window) => closeWindow(window.id))
+  }
+
+  return (
+    <button onClick={closeAll} disabled={windows.length === 0}>
+      Close All Windows
+    </button>
+  )
+}
+```
+
+### Window List
+
+```tsx
+function WindowList() {
+  const { windows, focusWindow, closeWindow } = useWindowManager()
+
+  return (
+    <ul>
+      {windows.map((window) => (
+        <li key={window.id}>
+          <span>{window.title}</span>
+          <button onClick={() => focusWindow(window.id)}>Focus</button>
+          <button onClick={() => closeWindow(window.id)}>Close</button>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+## Related Components
+
+- [Window](/docs/components/window) - Individual window component
+- [Dock](/docs/components/dock) - Application launcher with window indicators

@@ -1,0 +1,212 @@
+/**
+ * @sylonik/macos-ui - VitePress Custom Theme
+ * macOS-inspired documentation styling
+ */
+
+:root {
+  /* Brand colors - macOS Blue */
+  --vp-c-brand-1: #0071e3;
+  --vp-c-brand-2: #0077ed;
+  --vp-c-brand-3: #006edb;
+  --vp-c-brand-soft: rgba(0, 113, 227, 0.14);
+  
+  /* Custom colors */
+  --macos-red: #ff5f57;
+  --macos-yellow: #febc2e;
+  --macos-green: #28c840;
+  
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #0071e3 30%, #28c840);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #0071e3 50%, #28c840 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
+  --vp-c-brand-1: #4ca6ff;
+  --vp-c-brand-2: #5eafff;
+  --vp-c-brand-3: #3d9dff;
+  --vp-c-brand-soft: rgba(76, 166, 255, 0.14);
+  
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #4ca6ff 50%, #28c840 50%);
+}
+
+/* Traffic light dots decoration */
+.traffic-lights {
+  display: inline-flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.traffic-lights span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.traffic-lights .red { background: var(--macos-red); }
+.traffic-lights .yellow { background: var(--macos-yellow); }
+.traffic-lights .green { background: var(--macos-green); }
+
+/* Feature cards */
+.feature-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--vp-c-bg-soft);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 16px rgba(0, 113, 227, 0.1);
+}
+
+/* Code blocks - macOS window style */
+.vp-doc div[class*="language-"] {
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc div[class*="language-"]::before {
+  display: none;
+}
+
+/* Props table styling */
+.props-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.props-table th {
+  background: var(--vp-c-bg-soft);
+  padding: 10px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid var(--vp-c-divider);
+}
+
+.props-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-size: 14px;
+}
+
+.props-table code {
+  font-size: 13px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--vp-c-bg-soft);
+}
+
+/* Playground container */
+.playground-container {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.playground-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--vp-c-bg-soft);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.playground-header .traffic-lights-mini {
+  display: flex;
+  gap: 6px;
+}
+
+.playground-header .traffic-lights-mini span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.playground-preview {
+  padding: 32px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vp-c-bg);
+}
+
+.playground-code {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.playground-code .toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--vp-c-bg-soft);
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  transition: color 0.2s;
+}
+
+.playground-code .toggle-btn:hover {
+  color: var(--vp-c-text-1);
+}
+
+/* Install command styling */
+.install-command {
+  display: flex;
+  align-items: center;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 1rem 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+}
+
+.install-command .prefix {
+  color: var(--vp-c-text-3);
+  margin-right: 8px;
+  user-select: none;
+}
+
+.install-command .command {
+  flex: 1;
+  color: var(--vp-c-text-1);
+}
+
+.install-command .copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--vp-c-text-3);
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.install-command .copy-btn:hover {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+}
+
+/* Badge styling */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 1rem 0;
+}
+
+.badge-row img {
+  height: 20px;
+}

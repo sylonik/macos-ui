@@ -1,0 +1,69 @@
+import { InstallCommand } from '@/components/install-command'
+
+# Installation
+
+Get started with macOS UI by installing the CLI and adding components to your project.
+
+## Initialize your project
+
+Run the `init` command to set up macOS UI in your project. This will prepare your environment for adding components.
+
+<InstallCommand command="npx @sylonik/macos-ui init" />
+
+The `init` command will:
+1.  Create a `tailwind.config.js` file with the necessary presets if one doesn't exist.
+2.  Register the macOS UI theme preset in your Tailwind configuration.
+3.  Create a `components` directory to store your components.
+4.  Generate a `theme.css` file with the default CSS variables for colors, radius, blur, and shadows.
+
+## Add components
+
+Add individual components to your project using the `add` command:
+
+<InstallCommand command="npx @sylonik/macos-ui add window" />
+
+The `add` command will:
+1.  Copy the component source files into your `components` directory.
+2.  Resolve and install any other macOS UI components that the new component depends on.
+3.  Add any required npm packages to your project's `package.json`.
+4.  Prompt for confirmation before overwriting any existing files.
+
+You can add multiple components at once:
+<InstallCommand command="npx @sylonik/macos-ui add dock menu-bar" />
+
+
+## Manual Installation
+
+If you prefer not to use the CLI, you can manually copy components from the [GitHub repository](https://github.com/sylonik/macos-ui).
+
+1. Copy the component files from `src/components/[component-name]`
+2. Install the required dependencies listed in the component documentation
+3. Configure Tailwind CSS with the macOS UI preset
+
+## Configuration
+
+### Tailwind Config
+
+Make sure your `tailwind.config.js` includes the macOS UI preset:
+
+```js
+import macosPreset from '@sylonik/macos-ui/tailwind.preset'
+
+export default {
+  presets: [macosPreset],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+}
+```
+
+### Theme Configuration
+
+Customize the theme by modifying CSS variables in your global CSS file. See the [Theming](/docs/theming) guide for more details.
+
+## Next Steps
+
+- Browse available [Components](/docs/components/window)
+- Learn about [Theming](/docs/theming)
+- Read the [Contributor Guide](/docs/contributing)

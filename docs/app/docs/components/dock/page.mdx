@@ -1,0 +1,210 @@
+import { InstallCommand } from '@/components/install-command';
+import { PropsTable } from '@/components/props-table';
+import {
+  BasicDockExample,
+  DockWithIndicatorsExample,
+  DockWithColorsExample,
+  VerticalDockExample,
+  DockNoMagnificationExample,
+} from '@/components/dock-examples';
+
+# Dock
+
+A macOS-style application launcher bar with magnification effects and running indicators.
+
+## Installation
+
+<InstallCommand command="npx @sylonik/macos-ui add dock" />
+
+## Usage
+
+```tsx
+import { Dock } from '@/components/dock'
+import { FileText, Settings, Mail } from 'lucide-react'
+
+function App() {
+  const dockItems = [
+    {
+      id: 'documents',
+      icon: FileText,
+      label: 'Documents',
+      onClick: () => console.log('Open documents'),
+      isRunning: true,
+    },
+    {
+      id: 'settings',
+      icon: Settings,
+      label: 'Settings',
+      onClick: () => console.log('Open settings'),
+      isRunning: false,
+    },
+    {
+      id: 'mail',
+      icon: Mail,
+      label: 'Mail',
+      onClick: () => console.log('Open mail'),
+      isRunning: true,
+      badge: 5,
+    },
+  ]
+
+  return <Dock items={dockItems} position="bottom" magnification />
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'items',
+      type: 'DockItemConfig[]',
+      required: true,
+      description: 'Array of dock item configurations',
+    },
+    {
+      name: 'position',
+      type: '"bottom" | "left" | "right"',
+      required: false,
+      default: '"bottom"',
+      description: 'Position of the dock on screen',
+    },
+    {
+      name: 'magnification',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+      description: 'Enable magnification effect on hover',
+    },
+    {
+      name: 'magnificationScale',
+      type: 'number',
+      required: false,
+      default: '1.5',
+      description: 'Scale factor for magnification (1.0 - 2.0)',
+    },
+    {
+      name: 'autoHide',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+      description: 'Auto-hide the dock when not in use',
+    },
+    {
+      name: 'className',
+      type: 'string',
+      required: false,
+      description: 'Additional CSS classes',
+    },
+  ]}
+/>
+
+## Dock Item Config
+
+```tsx
+interface DockItemConfig {
+  id: string
+  icon: React.ComponentType<{ size?: number }>
+  label: string
+  color?: string
+  onClick?: () => void
+  isRunning?: boolean
+  badge?: number | string
+}
+```
+
+<PropsTable
+  props={[
+    {
+      name: 'id',
+      type: 'string',
+      required: true,
+      description: 'Unique identifier for the dock item',
+    },
+    {
+      name: 'icon',
+      type: 'React.ComponentType<{ size?: number }>',
+      required: true,
+      description: 'Icon component to display',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      required: true,
+      description: 'Label text (shown on hover)',
+    },
+    {
+      name: 'color',
+      type: 'string',
+      required: false,
+      description: 'Custom color for the icon',
+    },
+    {
+      name: 'onClick',
+      type: '() => void',
+      required: false,
+      description: 'Callback when item is clicked',
+    },
+    {
+      name: 'isRunning',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+      description: 'Show running indicator dot',
+    },
+    {
+      name: 'badge',
+      type: 'number | string',
+      required: false,
+      description: 'Badge content (e.g., notification count)',
+    },
+  ]}
+/>
+
+## Features
+
+- **Magnification Effect**: Icons scale up on hover
+- **Running Indicators**: Dots below running applications
+- **Badges**: Notification counts or labels
+- **Multiple Positions**: Bottom, left, or right placement
+- **Auto-Hide**: Optional auto-hide behavior
+- **Keyboard Accessible**: Full keyboard navigation
+- **Smooth Animations**: Fluid transitions and effects
+
+## Examples
+
+<BasicDockExample />
+
+<DockWithIndicatorsExample />
+
+<DockWithColorsExample />
+
+<VerticalDockExample />
+
+<DockNoMagnificationExample />
+
+## Accessibility
+
+The Dock component includes:
+
+- `aria-label` on each dock item
+- Keyboard navigation with Tab and Arrow keys
+- Focus indicators
+- Screen reader announcements for running state and badges
+
+## Styling
+
+Customize the dock appearance using CSS variables:
+
+```css
+:root {
+  --dock-background: 0 0% 95%;
+  --dock-blur: 40px;
+  --dock-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+```
+
+## Related Components
+
+- [Window Manager](/docs/components/window-manager) - Manages windows opened from dock
+- [Desktop Icon](/docs/components/desktop-icon) - Alternative launcher style

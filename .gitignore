@@ -1,0 +1,15 @@
+node_modules/
+dist/
+cli/dist/
+coverage/
+test-results/
+playwright-report/
+.DS_Store
+*.log
+.vite/
+.turbo/
+.wrangler/
+.env
+.env.local
+docs-vitepress/.vitepress/dist/
+docs-vitepress/.vitepress/cache/

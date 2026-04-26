@@ -1,0 +1,171 @@
+{
+  "name": "@sylonikse/macos-ui",
+  "version": "0.2.0",
+  "components": {
+    "window": {
+      "name": "window",
+      "description": "Draggable, resizable macOS-style window component with WindowManager for state management",
+      "category": "window",
+      "files": [
+        {
+          "name": "window.tsx",
+          "path": "components/window/window.tsx",
+          "type": "component"
+        },
+        {
+          "name": "window-manager.tsx",
+          "path": "components/window/window-manager.tsx",
+          "type": "component"
+        },
+        {
+          "name": "window.types.ts",
+          "path": "components/window/window.types.ts",
+          "type": "type"
+        },
+        {
+          "name": "index.ts",
+          "path": "components/window/index.ts",
+          "type": "component"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/utilities"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    "utils": {
+      "name": "utils",
+      "description": "Utility functions including cn() for class merging",
+      "category": "lib",
+      "files": [
+        {
+          "name": "utils.ts",
+          "path": "lib/utils.ts",
+          "type": "util"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": []
+    },
+    "theme": {
+      "name": "theme",
+      "description": "Theme system with CSS variables and configuration",
+      "category": "lib",
+      "files": [
+        {
+          "name": "theme.ts",
+          "path": "lib/theme.ts",
+          "type": "util"
+        },
+        {
+          "name": "theme.types.ts",
+          "path": "lib/theme.types.ts",
+          "type": "type"
+        },
+        {
+          "name": "theme.css",
+          "path": "styles/theme.css",
+          "type": "style"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "registryDependencies": []
+    },
+    "dock": {
+      "name": "dock",
+      "description": "macOS-style dock with magnification effect, running indicators, and badge support",
+      "category": "desktop",
+      "files": [
+        {
+          "name": "dock.tsx",
+          "path": "components/dock/dock.tsx",
+          "type": "component"
+        },
+        {
+          "name": "dock.types.ts",
+          "path": "components/dock/dock.types.ts",
+          "type": "type"
+        },
+        {
+          "name": "index.ts",
+          "path": "components/dock/index.ts",
+          "type": "component"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    "menu-bar": {
+      "name": "menu-bar",
+      "description": "macOS-style menu bar with dropdown menus, keyboard navigation, and system status area",
+      "category": "desktop",
+      "files": [
+        {
+          "name": "menu-bar.tsx",
+          "path": "components/menu-bar/menu-bar.tsx",
+          "type": "component"
+        },
+        {
+          "name": "menu-bar.types.ts",
+          "path": "components/menu-bar/menu-bar.types.ts",
+          "type": "type"
+        },
+        {
+          "name": "index.ts",
+          "path": "components/menu-bar/index.ts",
+          "type": "component"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    "desktop-icon": {
+      "name": "desktop-icon",
+      "description": "macOS-style desktop icon with selection state, click/double-click support, and keyboard accessibility",
+      "category": "desktop",
+      "files": [
+        {
+          "name": "desktop-icon.tsx",
+          "path": "components/desktop-icon/desktop-icon.tsx",
+          "type": "component"
+        },
+        {
+          "name": "desktop-icon.types.ts",
+          "path": "components/desktop-icon/desktop-icon.types.ts",
+          "type": "type"
+        },
+        {
+          "name": "index.ts",
+          "path": "components/desktop-icon/index.ts",
+          "type": "component"
+        }
+      ],
+      "dependencies": [],
+      "devDependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    }
+  }
+}

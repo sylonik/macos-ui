@@ -1,0 +1,47 @@
+# Source files
+src/
+cli/**/*.test.ts
+
+# Documentation
+docs-vitepress/
+
+# Testing
+e2e/
+test-results/
+playwright-report/
+coverage/
+.nyc_output/
+
+# Development
+.github/
+.vscode/
+.claude/
+.git/
+.gitignore
+.prettierignore
+.prettierrc
+.turbo/
+
+# Config files
+tsconfig.json
+vitest.config.ts
+playwright.config.ts
+vite.config.ts
+eslint.config.js
+
+# Documentation files
+GEMINI.md
+TAILWIND.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# System
+.DS_Store
+*.log
+.env
+.env.local
+
+# Build artifacts (except dist)
+.vite/
+.wrangler/
