@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 /**
@@ -32,12 +34,12 @@ function preserveUseClientDirective(): Plugin {
       }
       return null
     },
-  }
+  };
 }
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preserveUseClientDirective(), react()],
+  plugins: [preserveUseClientDirective(), react(), cloudflare()],
   server: {
     port: 7135,
   },
