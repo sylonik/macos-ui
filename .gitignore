@@ -13,3 +13,7 @@ playwright-report/
 .env.local
 docs-vitepress/.vitepress/dist/
 docs-vitepress/.vitepress/cache/
+
+.dev.vars*
+!.dev.vars.example
+!.env.example

@@ -6,7 +6,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "engines": {
     "node": ">=18"
   },
@@ -57,7 +59,9 @@
     "type-check": "tsc --noEmit",
     "docs:dev": "vitepress dev docs-vitepress",
     "docs:build": "node -e \"const{mkdirSync,copyFileSync}=require('fs');mkdirSync('docs-vitepress/public/registry',{recursive:true});copyFileSync('registry/components.json','docs-vitepress/public/registry/components.json')\" && vitepress build docs-vitepress",
-    "docs:preview": "vitepress preview docs-vitepress"
+    "docs:preview": "vitepress preview docs-vitepress",
+    "deploy": "pnpm run build && wrangler deploy",
+    "preview": "pnpm run build && wrangler dev"
   },
   "keywords": [
     "react",
@@ -110,6 +114,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.33.2",
     "@eslint/js": "^9.33.0",
     "@playwright/test": "^1.57.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -134,6 +139,7 @@
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
     "vitepress": "^1.0.0",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "wrangler": "^4.85.0"
   }
 }
