@@ -60,8 +60,8 @@
     "docs:dev": "vitepress dev docs-vitepress",
     "docs:build": "node -e \"const{mkdirSync,copyFileSync}=require('fs');mkdirSync('docs-vitepress/public/registry',{recursive:true});copyFileSync('registry/components.json','docs-vitepress/public/registry/components.json')\" && vitepress build docs-vitepress",
     "docs:preview": "vitepress preview docs-vitepress",
-    "deploy": "pnpm run build && wrangler deploy",
-    "preview": "pnpm run build && wrangler dev"
+    "deploy": "pnpm docs:build && npx wrangler deploy",
+    "preview": "pnpm docs:build && npx wrangler dev"
   },
   "keywords": [
     "react",
